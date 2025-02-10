@@ -41,13 +41,6 @@ public class HeadLineController {
         return Result.ok(data);
     }
 
-
-    @PostMapping("update")
-    public Result update(@RequestBody Headline headline){
-        Result result = headlineService.updateData(headline);
-        return result;
-    }
-
     @PostMapping("removeByHid")
     public Result removeByHid(Integer hid){
         headlineService.removeById(hid);
