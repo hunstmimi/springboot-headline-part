@@ -26,13 +26,17 @@ public class HeadLineController {
 
 
     //登录以后才可以访问
-    @PostMapping("publish")
+    @PostMapping("publish")//当客户端发送一个 HTTP POST 请求到 /publish 路径时，应该调用哪个方法来处理这个请求
     public Result publish(@RequestBody  Headline headline, @RequestHeader String token){
         Result result = headlineService.publish(headline,token);
         return result;
     }
 
-
+    @PostMapping("update")
+    public Result update(@RequestBody  Headline headline, @RequestHeader String token){
+        Result result = headlineService.update(headline,token);
+        return result;
+    }
     @PostMapping("findHeadlineByHid")
     public Result findHeadlineByHid(Integer hid){
         Headline headline = headlineService.getById(hid);

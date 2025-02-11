@@ -3,6 +3,7 @@ package com.atguigu.service.impl;
 import com.atguigu.pojo.vo.PortalVo;
 import com.atguigu.utils.JwtHelper;
 import com.atguigu.utils.Result;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -115,6 +116,20 @@ public class HeadlineServiceImpl extends ServiceImpl<HeadlineMapper, Headline>
 
         headlineMapper.insert(headline);
 
+        return Result.ok(null);
+    }
+
+    @Override
+    public Result update(Headline headline,String token) {
+
+        //token查询用户id
+        int userId = jwtHelper.getUserId(token).intValue();
+        //数据装配
+        headline.setPublisher(userId);
+        headline.setPageViews(0);
+        headline.setCreateTime(new Date());
+        headline.setUpdateTime(new Date());
+        headlineMapper.updateById(headline);
         return Result.ok(null);
     }
 

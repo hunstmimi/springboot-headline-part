@@ -33,4 +33,11 @@ public interface HeadlineService extends IService<Headline> {
      * @return
      */
     Result publish(Headline headline,String token);
+
+    /**
+     * 修改头条方法
+     * @param headline
+     * @return
+     */
+    Result update(Headline headline,String token);
 }

@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.*;
  */
 
 @RestController
-@RequestMapping("user")
-@CrossOrigin
+@RequestMapping("user")//适配请求路径
+@CrossOrigin//允许跨域请求
 public class UserController {
 
     @Autowired
@@ -27,7 +27,7 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("login")
-    public Result login(@RequestBody User user){
+    public Result login(@RequestBody User user){//接收前端传来的user对象，并转换json数据为User对象
         Result result = userService.login(user);
         return result;
     }
